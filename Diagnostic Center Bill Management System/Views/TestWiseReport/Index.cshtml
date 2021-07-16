@@ -1,0 +1,96 @@
+﻿@model Diagnostic_Center_Bill_Management_System.ViewModel.TestWiseReportViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style type="text/css">
+    fieldset.scheduler-border {
+        margin-top: 20px;
+        border: solid 1px #DDD !important;
+        padding: 0 10px 10px 10px;
+        border-bottom: none;
+    }
+
+    legend.scheduler-border {
+        width: auto !important;
+        border: none;
+        font-size: 14px;
+    }
+</style>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">
+        <strong>Test Wise Report</strong>
+    </legend>
+
+    <div>
+        @using (Html.BeginForm("Show", "TestWiseReport", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FromDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ToDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="Show" class="btn btn-default" onclick="show()"/>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</fieldset>
+<div id="TypeList">
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    getAllTestType();
+        //})
+
+        $(function () {
+            $("#FromDate").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+
+            $("#ToDate").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+
+        function show() {
+            $.ajax({
+                url: '@Url.Action("LoadAllTestResult", "TestWiseReport")',
+                cache: true,
+                type: 'GET',
+                data: { 'FromDate': $("#FromDate").val(), 'ToDate': $("#ToDate").val() },
+                contentType: 'application/json; charset=utf-8',
+                dataType: "html",
+                success: function (data) {
+                    $("#TypeList").html(data);
+                }
+            });
+        }
+
+    </script>
+}

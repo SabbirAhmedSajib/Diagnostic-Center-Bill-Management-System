@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Diagnostic_Center_Bill_Management_System.Models.RequestMaster>
+
+
+<table class="table">
+    <tr>
+        <th>
+            SL
+        </th>
+        <th>
+            Test
+        </th>
+        <th>
+            Fee
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestSetup.TestName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fee)
+        </td>
+       
+    </tr>
+}
+
+</table>

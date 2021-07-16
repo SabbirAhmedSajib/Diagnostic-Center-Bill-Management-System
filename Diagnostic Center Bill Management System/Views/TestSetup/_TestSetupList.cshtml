@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Diagnostic_Center_Bill_Management_System.Models.TestSetup>
+
+<table class="table">
+    <tr>
+        <th>
+           SL
+        </th>
+        <th>
+            Test Name
+        </th>
+        <th>
+            Fee
+        </th>
+        <th>
+            Test Type
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestType.TypeName)
+        </td>
+    </tr>
+}
+
+</table>

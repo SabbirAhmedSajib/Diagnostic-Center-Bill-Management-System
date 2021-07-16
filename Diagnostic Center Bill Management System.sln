@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagnostic Center Bill Management System", "Diagnostic Center Bill Management System\Diagnostic Center Bill Management System.csproj", "{FDC02DC1-4DC5-4B05-9677-21B2ACD02B49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDC02DC1-4DC5-4B05-9677-21B2ACD02B49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC02DC1-4DC5-4B05-9677-21B2ACD02B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC02DC1-4DC5-4B05-9677-21B2ACD02B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC02DC1-4DC5-4B05-9677-21B2ACD02B49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A6D73EA-DA9B-4803-A8D6-AC5471B7B05D}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,25 @@
+﻿@model List<Diagnostic_Center_Bill_Management_System.Models.TestType>
+<table class="table">
+    <tr>
+        <th>
+            SL
+        </th>
+        <th>
+            TypeName
+        </th>
+        
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeName)
+        </td>        
+    </tr>
+}
+
+</table>

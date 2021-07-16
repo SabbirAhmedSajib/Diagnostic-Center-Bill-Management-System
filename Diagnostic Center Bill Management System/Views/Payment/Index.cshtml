@@ -1,0 +1,132 @@
+﻿@model Diagnostic_Center_Bill_Management_System.Models.PaymentViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<style type="text/css">
+    fieldset.scheduler-border {
+        margin-top: 20px;
+        border: solid 1px #DDD !important;
+        padding: 0 10px 10px 10px;
+        border-bottom: none;
+    }
+
+    legend.scheduler-border {
+        width: auto !important;
+        border: none;
+        font-size: 14px;
+    }
+</style>
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">
+        <strong>Payment</strong>
+    </legend>
+
+
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">
+            <strong></strong>
+        </legend>
+
+        <div>
+            
+
+            <div class="form-horizontal">                
+                <div class="form-group">
+                    <label for="BillNo" class="control-label col-md-2">Bill No</label>                    
+                    <div class="col-md-10">
+                        <input type="text" id="BillNo" class="form-control" /> OR
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="MobileNumber" class="control-label col-md-2">Mobile No</label>
+                    <div class="col-md-10">
+                        <input type="text" id="MobileNumber" class="form-control" />
+                    </div>                    
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        
+                        <input type="button" value="search" class="btn btn-default" onclick="search()" />
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </fieldset>
+
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">
+            <strong></strong>
+        </legend>
+        @if(ViewBag.success != null)
+        {
+            <div>
+                @ViewBag.success
+            </div>
+        }
+        <div>
+            @using (Html.BeginForm("Pay", "Payment", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Duedate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Duedate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Duedate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @Html.HiddenFor(model => model.RequestMasterId)
+                            
+                            <input type="submit" value="Pay" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </fieldset>
+</fieldset>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+            function search() {
+            $.ajax({
+                url: '@Url.Action("Search", "Payment")',
+                cache: true,
+                type: 'GET',
+                data: { 'BillNo': $("#BillNo").val(), 'MobileNumber': $("#MobileNumber").val() },
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                success: function (data) {                    
+                   $("#Amount").val(data.amount);
+                   $("#Duedate").val(data.duedate);
+                   $("#RequestMasterId").val(data.RequestMasterId);
+                    
+                }
+            });
+        }
+
+</script>
+    }

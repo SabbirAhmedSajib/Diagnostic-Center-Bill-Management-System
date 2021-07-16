@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Diagnostic_Center_Bill_Management_System.ViewModel.TestResultViewModel>
+
+<table class="table">
+    <tr>
+        <th>
+            SL
+        </th>
+        <th>
+            Test Name
+        </th>
+        <th>
+           Total List
+        </th>
+        <th>
+            Total Amount
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalTest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,80 @@
+﻿@model Diagnostic_Center_Bill_Management_System.Models.TestType
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style type="text/css">
+    fieldset.scheduler-border {
+        margin-top:20px;
+        border: solid 1px #DDD !important;
+        padding: 0 10px 10px 10px;
+        border-bottom: none;
+    }
+
+    legend.scheduler-border {
+        width: auto !important;
+        border: none;
+        font-size: 14px;
+    }
+</style>
+
+<fieldset class="scheduler-border">
+    <legend  class="scheduler-border">
+        <strong>Test Type Setup</strong> 
+    </legend>
+    <div class="form form-horizontal">
+
+        @using (Html.BeginForm("SaveInformation", "TestType", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div>
+                
+                
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TypeName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TypeName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.TypeName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</fieldset>
+<div id="TypeList">
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            getAllTestType();
+        })
+
+        function getAllTestType() {
+
+            $.ajax({
+                url: '@Url.Action("LoadAllTestType", "TestType")',
+                cache: true,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                dataType: "html",
+                success: function (data) {
+                    $("#TypeList").html(data);
+                }
+            });
+        }
+
+    </script>
+}

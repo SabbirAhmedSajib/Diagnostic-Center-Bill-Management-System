@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container text-center">
+    <div>
+        <h1>Diagnostic Center Bill Management System</h1>
+    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+    <div class="navbar" style="margin-top:50px">
+        <div class="dropdown">
+            <button class="dropbtn">Setup</button>
+            <div class="dropdown-content">
+                <a>@Html.ActionLink("Test Type", "Index", "TestType")</a>
+                <a>@Html.ActionLink("Test", "Index", "TestSetup")</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">Test Request</button>
+            <div class="dropdown-content">
+                <a>@Html.ActionLink("Entry", "Index", "RequestMaster")</a>
+                <a>@Html.ActionLink("Payment", "Index", "Payment")</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">Report</button>
+            <div class="dropdown-content">
+                <a>@Html.ActionLink("Test Wise", "Index", "TestWiseReport")</a>
+                <a>@Html.ActionLink("Type Wise", "Index", "TestWiseInformation")</a>
+                <a>@Html.ActionLink("Unpaid Bill", "Index", "UnpaidBillReport")</a>
+            </div>
+        </div>
+        
+    </div>
+    }
+</div>
+
+
